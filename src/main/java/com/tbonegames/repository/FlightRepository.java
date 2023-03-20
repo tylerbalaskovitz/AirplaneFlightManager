@@ -1,5 +1,7 @@
 package com.tbonegames.repository;
 
+import com.tbonegames.flights.Flight;
+
 /*
  * implements the rquired repository using the map collection
  *  Repositories are used to indicate that the class provides the mechanism for storage,
@@ -27,4 +29,7 @@ public interface FlightRepository <T> {
 	public T search(String name);
 
 	public T delete(int id);
+
+	void store(Flight flight);
+
 }

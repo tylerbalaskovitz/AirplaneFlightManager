@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public class Flight {
 
+	private Integer serialId;
+	public Integer getSerialId() {
+		return serialId;
+	}
+	public void setSerialId(Integer serialId) {
+		this.serialId = serialId;
+	}
 	private String flightId;
 	private String airlines;
 	private String source;
