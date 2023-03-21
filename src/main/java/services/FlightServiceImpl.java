@@ -30,9 +30,22 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	public String generateFlightID(String flightId) {
 		String currentFlight = flightId;
 		if (flightId == null) {
-		this.setFlightId("1001");
+			this.setFlightId("1001");
 		} else {
-			currentFlight = flightId;
+			int in = 1001;
+			for (int i = 0; i < flightList.size(); i++) {
+					int tempInt	= Integer.parseInt(flightList.get(i).getFlightId());
+					if (in == tempInt) {
+						in++;
+					}
+			
+			}
+			StringBuilder sb = new StringBuilder();
+			sb.append(in);
+			
+			
+			
+			currentFlight = sb.toString();
 		}
 		return currentFlight;
 		
@@ -48,7 +61,9 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	@Override
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount) {
 
-		flight.setFlightId(flightId);
+		
+		
+		flight.setFlightId(generateFlightID(flightId));
 		
 		flight.setAirlines(airlines);
 		

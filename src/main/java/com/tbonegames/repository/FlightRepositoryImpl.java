@@ -1,5 +1,6 @@
 package com.tbonegames.repository;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,11 +50,40 @@ public class FlightRepositoryImpl implements FlightRepository{
 				return flights;
 			}
 		}
+		for (Flight flights: flightCollection) {
+			if (flights.getDestination().equalsIgnoreCase(name)) {
+				return flights;
+			}
+		}
+		for (Flight flights: flightCollection) {
+			if (flights.getSource().equalsIgnoreCase(name)) {
+				return flights;
+			}
+		}
+		for (Flight flights: flightCollection) {
+			try {
+				LocalDate ld = LocalDate.parse(name);
+				if (flights.getJourneyDate().isEqual(ld)) {
+					return flights;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			}
+
 		return null;
 	}
 
 	@Override
 	public Object delete(int id) {
+		
+		for (int i = 0; i < repository.size(); i++) {
+			int j = Integer.parseInt((repository.get(i).getFlightId()));
+			if ((repository.get(i) != null) && (id == j)) {
+				repository.remove(i);
+			return repository.get(i);
+				}
+			}
 		
 		return null;
 	}
