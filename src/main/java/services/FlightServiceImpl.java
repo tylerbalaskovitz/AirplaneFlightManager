@@ -2,6 +2,9 @@ package services;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.tbonegames.flights.Flight;
@@ -14,6 +17,8 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	
 	
 	//constructor of the service class that takes in the FlightRepository
+	//The @Autowired annotation is used for the constructor of a class. 
+	@Autowired
 	public FlightServiceImpl(FlightRepositoryImpl fri) {
 		this.fri = fri;
 	}
@@ -38,6 +43,7 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	}
 	
 	@Override
+	@Bean
 	public String generateFlightID(String flightId) {
 		String currentFlight = flightId;
 		if (flightId == null) {
@@ -65,12 +71,13 @@ public class FlightServiceImpl extends Flight implements FlightService{
 		
 	}
 	
-	
+	@Bean
 	public void searchFlight(String flightInfo) {
 		fri.search(flightInfo);
 	}
 
 	@Override
+	@Bean
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount) {
 
 		flight = new Flight();

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
 import com.tbonegames.flights.Flight;
@@ -25,24 +27,30 @@ public class FlightRepositoryImpl implements FlightRepository<Object>{
 
 	private Map<Integer, Flight> repository;
 	
+	@Autowired
 	public FlightRepositoryImpl() {
 		this.repository = new HashMap<>();
 	}
 
 	@Override
-	public void store(Flight flight) {
+	@Bean
+	public Flight store(Flight flight) {
 		//THe map function requires a key value pair, and the Integer used as the key number must be used as an Integer.
 		
 		repository.put(repository.size(), flight);
+		Flight storedFlight = repository.get(repository.size());
+		return storedFlight;
 	}
 
 	@Override
+	@Bean
 	public Flight retrieve(int id) {
 		
 		return repository.get(id);
 	}
 
 	@Override
+	@Bean
 	public Flight search(String name) {
 		//returns a collection of the values conatined in the map via the .values() method of the map collection
 		Collection<Flight> flightCollection = repository.values();
@@ -72,6 +80,7 @@ public class FlightRepositoryImpl implements FlightRepository<Object>{
 	}
 
 	@Override
+	@Bean
 	public Object delete(int id) {
 		
 		for (int i = 0; i < repository.size(); i++) {
@@ -85,11 +94,6 @@ public class FlightRepositoryImpl implements FlightRepository<Object>{
 		return null;
 	}
 
-	@Override
-	public void store(Object t) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	

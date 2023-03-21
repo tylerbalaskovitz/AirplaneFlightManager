@@ -22,7 +22,6 @@ private Integer seatCount;
 
 public interface FlightRepository <T> {
 
-	public void store(T t);
 
 	public T retrieve(int id);
 
@@ -30,7 +29,7 @@ public interface FlightRepository <T> {
 
 	public T delete(int id);
 
-	public void store(Flight flight);
+	public Flight store(Flight flight);
 
 
 }

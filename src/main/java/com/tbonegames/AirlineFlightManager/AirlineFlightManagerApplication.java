@@ -1,9 +1,8 @@
 package com.tbonegames.AirlineFlightManager;
 
-import java.time.LocalDate;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.tbonegames.repository.FlightRepositoryImpl;
@@ -16,7 +15,9 @@ public class AirlineFlightManagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AirlineFlightManagerApplication.class, args);
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		//ApplicationContext context = new ApplicationContext();
 		context.scan("com.tbonegames");
+		context.scan("services");
 		context.refresh();
 		
 		
@@ -24,6 +25,9 @@ public class AirlineFlightManagerApplication {
 		FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
 		
 		FlightServiceImpl fsi = context.getBean(FlightServiceImpl.class);
+		
+		fsi.addFlight("1004", "American Airlines", "Chicago", "Miami", 125.00, 3);
+		
 		
 		/*
 		 * 	private Integer serialId;
