@@ -5,10 +5,19 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import com.tbonegames.flights.Flight;
+import com.tbonegames.repository.FlightRepositoryImpl;
 
 @Service
 public class FlightServiceImpl extends Flight implements FlightService{
 
+	private FlightRepositoryImpl fri;
+	
+	
+	//constructor of the service class that takes in the FlightRepository
+	public FlightServiceImpl(FlightRepositoryImpl fri) {
+		this.fri = fri;
+	}
+	
 	ArrayList <Flight> flightList = new ArrayList<>();
 	Flight flight;
 	
@@ -21,6 +30,8 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	private LocalDate journeyDate;
 	private Integer seatCount;
 	*/
+	
+	
 	public void addFlight(String flightId) {
 		
 		
@@ -33,6 +44,7 @@ public class FlightServiceImpl extends Flight implements FlightService{
 			this.setFlightId("1001");
 		} else {
 			int in = 1001;
+			
 			for (int i = 0; i < flightList.size(); i++) {
 					int tempInt	= Integer.parseInt(flightList.get(i).getFlightId());
 					if (in == tempInt) {
@@ -61,7 +73,7 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	@Override
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount) {
 
-		
+		flight = new Flight();
 		
 		flight.setFlightId(generateFlightID(flightId));
 		
@@ -75,8 +87,7 @@ public class FlightServiceImpl extends Flight implements FlightService{
 		
 		flight.setSeatCount(seatCount);
 		
-		flightList.add(flight);
-		
+		fri.store(flight);
 	}
 
 	
