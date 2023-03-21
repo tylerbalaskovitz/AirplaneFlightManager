@@ -16,9 +16,7 @@ public class AirlineFlightManagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AirlineFlightManagerApplication.class, args);
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.scan("com.tbonegames.flights");
-		context.scan("com.tbonegames.repository");
-		context.scan("com.tbonegames.services");
+		context.scan("com.tbonegames");
 		context.refresh();
 		
 		
@@ -26,6 +24,7 @@ public class AirlineFlightManagerApplication {
 		FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
 		
 		FlightServiceImpl fsi = context.getBean(FlightServiceImpl.class);
+		
 		/*
 		 * 	private Integer serialId;
 	private String flightId;

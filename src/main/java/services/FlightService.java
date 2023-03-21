@@ -12,7 +12,7 @@ public interface FlightService {
 	
 	public String generateFlightID(String flightId);
 	
-	public void searchFlight();
+	public void searchFlight(String flightInfo);
 		
 	
 }

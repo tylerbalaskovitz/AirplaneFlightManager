@@ -21,7 +21,7 @@ import com.tbonegames.flights.Flight;
  */
 
 @Repository
-public class FlightRepositoryImpl implements FlightRepository{
+public class FlightRepositoryImpl implements FlightRepository<Object>{
 
 	private Map<Integer, Flight> repository;
 	
@@ -32,7 +32,8 @@ public class FlightRepositoryImpl implements FlightRepository{
 	@Override
 	public void store(Flight flight) {
 		//THe map function requires a key value pair, and the Integer used as the key number must be used as an Integer.
-		repository.put(flight.getSerialId(), flight);
+		
+		repository.put(repository.size(), flight);
 	}
 
 	@Override
@@ -89,6 +90,7 @@ public class FlightRepositoryImpl implements FlightRepository{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	
 	

@@ -66,8 +66,8 @@ public class FlightServiceImpl extends Flight implements FlightService{
 	}
 	
 	
-	public void searchFlight() {
-		
+	public void searchFlight(String flightInfo) {
+		fri.search(flightInfo);
 	}
 
 	@Override

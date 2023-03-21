@@ -30,6 +30,7 @@ public interface FlightRepository <T> {
 
 	public T delete(int id);
 
-	void store(Flight flight);
+	public void store(Flight flight);
+
 
 }
