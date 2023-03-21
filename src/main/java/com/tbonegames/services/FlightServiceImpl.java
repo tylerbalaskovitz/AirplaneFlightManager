@@ -1,17 +1,19 @@
-package services;
+package com.tbonegames.services;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.tbonegames.flights.Flight;
 import com.tbonegames.repository.FlightRepositoryImpl;
 
+@Configuration
 @Service
-public class FlightServiceImpl extends Flight implements FlightService{
+public class FlightServiceImpl extends Flight implements FlightService {
 
 	private FlightRepositoryImpl fri;
 	

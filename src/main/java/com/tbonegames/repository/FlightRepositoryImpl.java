@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 import com.tbonegames.flights.Flight;
@@ -22,8 +23,9 @@ import com.tbonegames.flights.Flight;
  *  
  */
 
+@Configuration
 @Repository
-public class FlightRepositoryImpl implements FlightRepository<Object>{
+public class FlightRepositoryImpl implements FlightRepository<Object> {
 
 	private Map<Integer, Flight> repository;
 	

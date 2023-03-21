@@ -1,4 +1,4 @@
-package services;
+package com.tbonegames.services;
 
 public interface FlightService {
 

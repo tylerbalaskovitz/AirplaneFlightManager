@@ -2,12 +2,10 @@ package com.tbonegames.AirlineFlightManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.tbonegames.repository.FlightRepositoryImpl;
-
-import services.FlightServiceImpl;
+import com.tbonegames.services.FlightServiceImpl;
 
 @SpringBootApplication
 public class AirlineFlightManagerApplication {
@@ -17,7 +15,6 @@ public class AirlineFlightManagerApplication {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		//ApplicationContext context = new ApplicationContext();
 		context.scan("com.tbonegames");
-		context.scan("services");
 		context.refresh();
 		
 		
