@@ -45,11 +45,7 @@ public class FlightRepositoryImpl implements FlightRepository{
 	public Flight search(String name) {
 		//returns a collection of the values conatined in the map via the .values() method of the map collection
 		Collection<Flight> flightCollection = repository.values();
-		for (Flight flights: flightCollection) {
-			if (flights.getDestination().equalsIgnoreCase(name)) {
-				return flights;
-			}
-		}
+		
 		for (Flight flights: flightCollection) {
 			if (flights.getDestination().equalsIgnoreCase(name)) {
 				return flights;
