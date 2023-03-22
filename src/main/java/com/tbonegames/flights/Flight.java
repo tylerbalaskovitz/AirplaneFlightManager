@@ -14,9 +14,9 @@ public class Flight {
 		int id = 0;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 5; i++) {
-		id = rand.nextInt(10000);
-		while(id < 1000) {
-			id = rand.nextInt(10000);
+		id = rand.nextInt(10);
+		while(id < 1) {
+			id = rand.nextInt(10);
 		}
 		sb.append(id);
 		

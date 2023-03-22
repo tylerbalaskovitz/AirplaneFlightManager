@@ -14,7 +14,7 @@ public class AirlineFlightManagerApplication {
 		SpringApplication.run(AirlineFlightManagerApplication.class, args);
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		//ApplicationContext context = new ApplicationContext();
-		context.scan("com.tbonegames");
+		context.scan("com.tbonegames.services");
 		context.refresh();
 		
 		
