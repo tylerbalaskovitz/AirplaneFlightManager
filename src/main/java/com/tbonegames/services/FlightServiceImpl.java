@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 import com.tbonegames.flights.Flight;
 import com.tbonegames.repository.FlightRepositoryImpl;
 
-@Configuration
 @Service
-public class FlightServiceImpl extends Flight implements FlightService {
+public class FlightServiceImpl implements FlightService {
 
+	//autowiring the reference of the FlightRepositoryImpl
 	private FlightRepositoryImpl fri;
 	
 	
 	//constructor of the service class that takes in the FlightRepository
 	//The @Autowired annotation is used for the constructor of a class. 
-	@Autowired
+	
 	public FlightServiceImpl(FlightRepositoryImpl fri) {
 		this.fri = fri;
 	}
@@ -45,11 +45,10 @@ public class FlightServiceImpl extends Flight implements FlightService {
 	}
 	
 	@Override
-	@Bean
 	public String generateFlightID(String flightId) {
 		String currentFlight = flightId;
 		if (flightId == null) {
-			this.setFlightId("1001");
+			flight.setFlightId("1001");
 		} else {
 			int in = 1001;
 			
@@ -73,13 +72,11 @@ public class FlightServiceImpl extends Flight implements FlightService {
 		
 	}
 	
-	@Bean
 	public void searchFlight(String flightInfo) {
 		fri.search(flightInfo);
 	}
 
 	@Override
-	@Bean
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount) {
 
 		flight = new Flight();

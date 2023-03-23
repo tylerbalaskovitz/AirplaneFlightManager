@@ -1,5 +1,7 @@
 package com.tbonegames.repository;
 
+import org.springframework.stereotype.Repository;
+
 import com.tbonegames.flights.Flight;
 
 /*
@@ -20,6 +22,7 @@ private LocalDate journeyDate;
 private Integer seatCount;
 */
 
+@Repository
 public interface FlightRepository <T> {
 
 

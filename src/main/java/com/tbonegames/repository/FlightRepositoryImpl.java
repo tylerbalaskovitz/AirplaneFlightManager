@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.tbonegames.flights.Flight;
@@ -23,7 +24,6 @@ import com.tbonegames.flights.Flight;
  *  
  */
 
-@Configuration
 @Repository
 public class FlightRepositoryImpl implements FlightRepository<Object> {
 
@@ -35,7 +35,6 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 	}
 
 	@Override
-	@Bean
 	public Flight store(Flight flight) {
 		//THe map function requires a key value pair, and the Integer used as the key number must be used as an Integer.
 		
@@ -45,14 +44,12 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 	}
 
 	@Override
-	@Bean
 	public Flight retrieve(int id) {
 		
 		return repository.get(id);
 	}
 
 	@Override
-	@Bean
 	public Flight search(String name) {
 		//returns a collection of the values conatined in the map via the .values() method of the map collection
 		Collection<Flight> flightCollection = repository.values();
@@ -82,7 +79,6 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 	}
 
 	@Override
-	@Bean
 	public Object delete(int id) {
 		
 		for (int i = 0; i < repository.size(); i++) {
