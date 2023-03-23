@@ -32,7 +32,9 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 	
 	public FlightRepositoryImpl() {
 		this.repository = new HashMap<>();
+		
 	}
+	
 
 	@Override
 	public Flight store(Flight flight) {

@@ -25,6 +25,7 @@ public class FlightServiceImpl implements FlightService {
 		this.fri = fri;
 	}
 	
+	
 	ArrayList <Flight> flightList = new ArrayList<>();
 	Flight flight;
 	
