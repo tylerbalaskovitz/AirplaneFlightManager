@@ -81,8 +81,11 @@ public class FlightServiceImpl implements FlightService {
 
 		flight = new Flight();
 		
-		flight.setFlightId(generateFlightID(flightId));
-		
+		if (flightId != null) {
+			flight.setFlightId(flightId);
+		} else {
+			flight.setFlightId("1001");
+		}
 		flight.setAirlines(airlines);
 		
 		flight.setSource(source);

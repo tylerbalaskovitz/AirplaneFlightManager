@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -29,7 +28,6 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 
 	private Map<Integer, Flight> repository;
 	
-	@Autowired
 	public FlightRepositoryImpl() {
 		this.repository = new HashMap<>();
 	}
@@ -76,6 +74,19 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 			}
 
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "FlightRepositoryImpl [repository=" + repository + "]";
+	}
+
+	public Map<Integer, Flight> getRepository() {
+		return repository;
+	}
+
+	public void setRepository(Map<Integer, Flight> repository) {
+		this.repository = repository;
 	}
 
 	@Override

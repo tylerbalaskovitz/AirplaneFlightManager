@@ -25,6 +25,21 @@ public class AirlineFlightManagerApplication{
 
 		FlightServiceImpl fsi = context.getBean(FlightServiceImpl.class);
 		fsi.addFlight("1004", "American Airlines", "Chicago", "Miami", 125.00, 3);
+		fsi.addFlight("2072", "United Airlines", "Atlanta", "Los Angeles", 255.00, 8);
+		fsi.addFlight(null, "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1);
+		
+		FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
+		System.out.println("=================");
+		for (int i = 0; i < fri.getRepository().size(); i++) {
+			System.out.println(fri.retrieve(i).toString());
+			
+		}
+		
+		
+		System.out.println("-----------AFTER DELETION------------");
+		for (int i = 0; i < fri.getRepository().size(); i++) {
+			System.out.println(fri.retrieve(i).toString());
+		}
 		
 		
 

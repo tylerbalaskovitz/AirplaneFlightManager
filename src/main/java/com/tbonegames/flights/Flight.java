@@ -4,6 +4,13 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class Flight {
+	@Override
+	public String toString() {
+		return "Flight [serialId=" + serialId + ", flightId=" + flightId + ", airlines=" + airlines
+				+ ", source=" + source + ", destination=" + destination + ", fare=" + fare + ", journeyDate="
+				+ journeyDate + ", seatCount=" + seatCount + "]";
+	}
+
 	Random rand = new Random();
 	public Flight() {
 		serialId = generateSerialId();
