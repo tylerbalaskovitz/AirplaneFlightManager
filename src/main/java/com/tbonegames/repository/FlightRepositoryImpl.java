@@ -26,6 +26,8 @@ import com.tbonegames.flights.Flight;
 @Repository
 public class FlightRepositoryImpl implements FlightRepository<Object> {
 
+	//Since this is a map, it stores two objects. The left object is the Key and the right is the value. Meaning that adding numbers to the 
+	//key/value pair will kind of work?
 	private Map<Integer, Flight> repository;
 	
 	public FlightRepositoryImpl() {
@@ -43,8 +45,7 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 
 	@Override
 	public Flight retrieve(int id) {
-		
-		return repository.get(id);
+			return repository.get(id);
 	}
 
 	@Override
@@ -76,6 +77,20 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 		return null;
 	}
 
+
+
+	@Override
+	public Object delete(int id) {
+		for (int i = 0; i < repository.size(); i++) {
+				int j = Integer.parseInt((repository.get(i).getFlightId()));
+				if (id == j) {
+					repository.remove(i);
+					System.out.println("Flight [flightId="+id+" was deleted]");
+				}
+		}
+		return repository.toString();
+	}
+
 	@Override
 	public String toString() {
 		return "FlightRepositoryImpl [repository=" + repository + "]";
@@ -88,27 +103,5 @@ public class FlightRepositoryImpl implements FlightRepository<Object> {
 	public void setRepository(Map<Integer, Flight> repository) {
 		this.repository = repository;
 	}
-
-	@Override
-	public Object delete(int id) {
-		
-		for (int i = 0; i < repository.size(); i++) {
-			int j = Integer.parseInt((repository.get(i).getFlightId()));
-			if ((repository.get(i) != null) && (id == j)) {
-				repository.remove(i);
-			return repository.get(i);
-				}
-			}
-		
-		return null;
-	}
-
-
-
-	
-	
-	
-	 
-	
 	
 }

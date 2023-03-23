@@ -29,6 +29,7 @@ public class AirlineFlightManagerApplication{
 		fsi.addFlight(null, "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1);
 		
 		FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
+		System.out.println(" ");
 		System.out.println("=========Adding Flights=========");
 		for (int i = 0; i < fri.getRepository().size(); i++) {
 			System.out.println(fri.retrieve(i).toString());
@@ -39,6 +40,21 @@ public class AirlineFlightManagerApplication{
 		System.out.println("-----------AFTER SEARCH-----------");
 		System.out.println(fri.search("TOkyo").toString());
 		System.out.println(fri.search("miami").toString());
+		System.out.println(" ");
+		
+		System.out.println("-----------Record Deletion-----------");
+		fri.delete(2072);
+		fri.delete(1004);
+		System.out.println(" ");
+		System.out.println("-----------AFTER DELETION-----------");
+
+		//since this is a map, it uses two objects as the 
+		for (int i = 0; i < Integer.MAX_VALUE; i++) {
+			if (fri.retrieve(i) != null) {
+				System.out.println(fri.retrieve(i).toString());
+			}
+		}
+		
 		
 
 	}
