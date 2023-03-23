@@ -13,18 +13,14 @@ import org.springframework.context.annotation.Bean;
 @Aspect
 public class LoggingAspect {
 	
-	@Bean
-	public LoggingAspect  LoggingAspect() {
-		return new LoggingAspect();
 		
-	}
 	
 	//logs the details for whenever a new flight is booked into a log file
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	//make sure you have a closing parenthesis on the right side after the quotation mark for the @Pointcut
-	@Before("execution(* com.tbonegames.repository.FlightRepositoryImpl+.*(..))")
+	@Before("execution(* com.tbonegames.repository.FlightServiceImpl+.*(..))")
 	public void afterAddingFlight(JoinPoint joinPoint, Object returnValue) throws Throwable{
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
