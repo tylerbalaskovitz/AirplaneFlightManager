@@ -29,18 +29,16 @@ public class AirlineFlightManagerApplication{
 		fsi.addFlight(null, "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1);
 		
 		FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
-		System.out.println("=================");
+		System.out.println("=========Adding Flights=========");
 		for (int i = 0; i < fri.getRepository().size(); i++) {
 			System.out.println(fri.retrieve(i).toString());
 			
 		}
 		
-		
-		System.out.println("-----------AFTER DELETION------------");
-		for (int i = 0; i < fri.getRepository().size(); i++) {
-			System.out.println(fri.retrieve(i).toString());
-		}
-		
+		System.out.println(" ");
+		System.out.println("-----------AFTER SEARCH-----------");
+		System.out.println(fri.search("TOkyo").toString());
+		System.out.println(fri.search("miami").toString());
 		
 
 	}
