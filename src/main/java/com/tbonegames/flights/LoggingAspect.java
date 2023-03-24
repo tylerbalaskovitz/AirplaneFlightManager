@@ -23,20 +23,20 @@ public class LoggingAspect {
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
 		Object args = joinPoint.getArgs();
-		System.out.println(className + "." + methodName + "() returned. " + args.toString());
+	
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("BEFORE. Flight created on " + ldt);
-		
+		System.out.println(className + "." + methodName + "() returned. " + args.toString());
 	}
 	
 	@After("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
 	public void afterAddingFlight(JoinPoint joinPoint) throws Throwable{
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
-		System.out.println(className + "." + methodName + "() returned.");
+	
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("AFTER.  the method was executed at" + ldt);
-
+		System.out.println(className + "." + methodName + "() returned.");
 	}
 	
 	

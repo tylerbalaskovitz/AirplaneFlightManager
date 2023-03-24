@@ -13,6 +13,7 @@ import com.tbonegames.repository.FlightRepositoryImpl;
 public class FlightServiceImpl implements FlightService {
 
 	//autowiring the reference of the FlightRepositoryImpl
+
 	private FlightRepositoryImpl fri;
 	
 	
