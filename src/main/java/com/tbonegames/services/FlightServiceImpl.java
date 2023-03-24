@@ -3,6 +3,7 @@ package com.tbonegames.services;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -21,24 +22,13 @@ public class FlightServiceImpl implements FlightService {
 	//constructor of the service class that takes in the FlightRepository
 	//The @Autowired annotation is used for the constructor of a class. 
 	
-	public FlightServiceImpl(FlightRepositoryImpl fri) {
+	public FlightServiceImpl(@Qualifier("flightRepo") FlightRepositoryImpl fri) {
 		this.fri = fri;
 	}
 	
 	
 	ArrayList <Flight> flightList = new ArrayList<>();
 	Flight flight;
-	
-	/*Adding a flight must have the user's Details 	
-	private String flightId;
-	private String airlines;
-	private String source;
-	private String destination;
-	private Double fare;
-	private LocalDate journeyDate;
-	private Integer seatCount;
-	*/
-	
 	
 	
 	@Override

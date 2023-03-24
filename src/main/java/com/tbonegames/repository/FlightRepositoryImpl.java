@@ -5,16 +5,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.tbonegames.flights.Flight;
 
 
 /*
- * implements the rquired repository using the map collection
+ * implements the required repository using the map collection
  *  Repositories are used to indicate that the class provides the mechanism for storage,
  *  retrieval, search, update and delete operation on objects
  *  
@@ -23,6 +21,7 @@ import com.tbonegames.flights.Flight;
  *  
  */
 
+@Qualifier("flightRepo")
 @Repository
 public class FlightRepositoryImpl implements FlightRepository<Object> {
 
