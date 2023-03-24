@@ -2,16 +2,13 @@ package com.tbonegames.services;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.tbonegames.flights.Flight;
 import com.tbonegames.repository.FlightRepositoryImpl;
 
+@Qualifier("flightService")
 @Service
 public class FlightServiceImpl implements FlightService {
 

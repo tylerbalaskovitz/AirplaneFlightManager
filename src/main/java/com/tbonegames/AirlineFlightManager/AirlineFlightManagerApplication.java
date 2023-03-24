@@ -1,7 +1,5 @@
 package com.tbonegames.AirlineFlightManager;
 
-import org.springframework.beans.BeansException;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,13 +10,12 @@ import com.tbonegames.services.FlightServiceImpl;
 
 @SpringBootApplication
 public class AirlineFlightManagerApplication{
-
 	
 	public static void main(String[] args) {
-		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
-			//ApplicationContext context = new ApplicationContext();
+			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 			context.scan("com.tbonegames");
 			context.register(AppConfig.class);
+			
 			context.refresh();
 			SpringApplication.run(AirlineFlightManagerApplication.class, args);
 
@@ -53,11 +50,6 @@ public class AirlineFlightManagerApplication{
 					System.out.println(fri.retrieve(i).toString());
 				}
 			}
-		} catch (BeansException | IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 
 	}
