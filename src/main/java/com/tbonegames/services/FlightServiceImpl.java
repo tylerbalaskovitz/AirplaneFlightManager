@@ -40,10 +40,6 @@ public class FlightServiceImpl implements FlightService {
 	*/
 	
 	
-	public void addFlight(String flightId) {
-		
-		
-	}
 	
 	@Override
 	public String generateFlightID(String flightId) {
