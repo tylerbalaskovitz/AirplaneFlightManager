@@ -1,7 +1,10 @@
 package com.tbonegames.flights;
 
 
+import java.time.LocalDateTime;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -16,11 +19,24 @@ public class LoggingAspect {
 	
 	//THis is the pointcut, by specifying when the Aspect is applied. The Advice is the @Before's body.
 	@Before("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
-	public void afterAddingFlight(JoinPoint joinPoint) {
+	public void beforeAddingFlight(JoinPoint joinPoint) {
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
-		System.out.println(className + "." + methodName + "() returned. ");
+		Object args = joinPoint.getArgs();
+		System.out.println(className + "." + methodName + "() returned. " + args.toString());
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println("BEFORE. Flight created on " + ldt);
 		
+	}
+	
+	@After("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
+	public void afterAddingFlight(JoinPoint joinPoint) throws Throwable{
+		String className = joinPoint.getTarget().getClass().getName();
+		String methodName = joinPoint.getSignature().getName();
+		System.out.println(className + "." + methodName + "() returned.");
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println("AFTER.  the method was executed at" + ldt);
+
 	}
 	
 	
