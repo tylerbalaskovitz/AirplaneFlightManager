@@ -4,7 +4,11 @@ package com.tbonegames.flights;
 import java.time.LocalDateTime;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -39,5 +43,41 @@ public class LoggingAspect {
 		System.out.println(className + "." + methodName + "() returned.");
 	}
 	
+	@AfterReturning(pointcut = "execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
+	public void afterReturningAddingFlight(JoinPoint joinPoint) throws Throwable{
+		String className = joinPoint.getTarget().getClass().getName();
+		String methodName = joinPoint.getSignature().getName();
 	
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println("==============================================");
+		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
+		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
+		System.out.println(className + "." + methodName + "() returned.");
+		System.out.println("==============================================");
+	}
+	
+	@AfterThrowing(pointcut = "execution(* com.tbonegames.services.FlightServiceImpl.*(..))", throwing = "ex")
+	public void afterThrowingAddingFlight(JoinPoint joinPoint) throws Throwable{
+		String className = joinPoint.getTarget().getClass().getName();
+		String methodName = joinPoint.getSignature().getName();
+	
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println("*******************************************");
+		System.out.println("THROWING.  the method was executed at" + ldt);
+		System.out.println(className + "." + methodName + "() returned.");
+		System.out.println("*******************************************");
+	}
+	
+	@Around(("execution(* com.tbonegames.services.FlightServiceImpl.*(..))"))
+	public void aroundAddingFlight(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+		String className = proceedingJoinPoint.getTarget().getClass().getName();
+		String methodName = proceedingJoinPoint.getSignature().getName();
+		System.out.println("PROCEED BEFORE. The proceedingJoinPoint.proceed() is executed");
+	
+		proceedingJoinPoint.proceed(); 
+		
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println("PROCEED AFTER. The proceedingJoinPoint.proceed() is executed. the method was executed at" + ldt);
+		System.out.println(className + "." + methodName + "() returned.");
+	}
 }
