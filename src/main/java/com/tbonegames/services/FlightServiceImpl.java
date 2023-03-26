@@ -70,7 +70,6 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setJourneyDate(LocalDate.of(year, month, day));
 		
-		
 		if (flightId != null) {
 			flight.setFlightId(flightId);
 		} else {
@@ -84,7 +83,10 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setFare(fare);
 		
-		checkWithinHoliday(flight.getJourneyDate());
+		if (checkWithinHoliday(flight.getJourneyDate())) {
+	      	flight.setFare(flight.getFare()*1.2);
+        	System.out.println("*NEW PRICE: "+ flight.getFare() +"*********");
+		}
 		
 		flight.setSeatCount(seatCount);
 		
@@ -92,17 +94,32 @@ public class FlightServiceImpl implements FlightService {
 	}
 	
 	//THis take the LocalDate's date to check, start date and end date, and then returns teh value of the code. This considers offsets for
-	//the following years
+	//the following years. An offset needs to be considered
 	public boolean checkWithinHoliday (LocalDate dateToCheck) {
+		
 		boolean holidayCheck = false;
+		//multiple startDateYears need to be used to consider an offset. So, a few different seasons needed to be put in to consider the offset
+	
 		int startDateYear = dateToCheck.getYear();
-		int endDateYear = (startDateYear+1);
+		int endDateYear = (dateToCheck.getYear()+1);
 		LocalDate startDate = LocalDate.of(startDateYear, 12, 1);
 		LocalDate endDate = LocalDate.of(endDateYear, 1, 31);
-        if (dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
-                || (dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate))) {
+        if (dateToCheck.isEqual(startDate) 
+    		|| dateToCheck.isEqual(endDate)
+            || (dateToCheck.isAfter(startDate) && (dateToCheck.isBefore(endDate)))) {
         	holidayCheck = true;
         }
+        
+    	
+		int lastStartDateYear = (dateToCheck.getYear()-1);
+		int lastEndDateYear = (dateToCheck.getYear());
+		LocalDate lastStartDate = LocalDate.of(lastStartDateYear, 12, 1);
+		LocalDate lastEndDate = LocalDate.of(lastEndDateYear, 1, 31);
+        if (dateToCheck.isEqual(lastStartDate) 
+        		|| dateToCheck.isEqual(lastEndDate)
+                || (dateToCheck.isAfter(lastStartDate) && (dateToCheck.isBefore(lastEndDate)))) {
+            	holidayCheck = true;
+            }
         if (holidayCheck == true) {
 			System.out.println("****************************");
 			System.out.println("****************************");
@@ -111,8 +128,7 @@ public class FlightServiceImpl implements FlightService {
 			System.out.println("****************************");
 			System.out.println("****************************");
 			System.out.println("****************************");
-        	flight.setFare(flight.getFare()*1.2);
-        	System.out.println("*NEW PRICE: "+ flight.getFare() +"*********");
+  
         } 
         
         return holidayCheck;

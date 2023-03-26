@@ -21,7 +21,7 @@ public class AirlineFlightManagerApplication{
 			FlightServiceImpl fsi = context.getBean(FlightServiceImpl.class);
 			fsi.addFlight("1004", "American Airlines", "Chicago", "Miami", 125.00, 3, 2024, 3, 12);
 			fsi.addFlight("2072", "United Airlines", "Atlanta", "Los Angeles", 255.00, 8, 2064, 12, 31);
-			fsi.addFlight("2410", "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1, 2024, 1, 12);
+			fsi.addFlight("2410", "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1, 2025, 1, 1);
 			
 			FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
 			System.out.println(" ");
