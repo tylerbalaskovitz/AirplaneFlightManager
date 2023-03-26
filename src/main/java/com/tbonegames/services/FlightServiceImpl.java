@@ -28,7 +28,7 @@ public class FlightServiceImpl implements FlightService {
 	
 	
 	ArrayList <Flight> flightList = new ArrayList<>();
-	Flight flight;
+	Flight flight = new Flight();
 	
 	
 	@Override
@@ -83,9 +83,7 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setDestination(destination);
 		
-		if (checkWithinHoliday(flightDate) == false) {
-			flight.setFare(fare);
-		} else {
+		if (checkWithinHoliday(flightDate) == true) {
 			System.out.println("****************************");
 			System.out.println("****************************");
 			System.out.println("*****HOLIDAY FLIGHT*********");
@@ -93,6 +91,8 @@ public class FlightServiceImpl implements FlightService {
 			System.out.println("****************************");
 			System.out.println("****************************");
 			flight.setFare(fare*1.2);
+		} else {
+			flight.setFare(fare);
 		}
 		
 		flight.setSeatCount(seatCount);
@@ -103,12 +103,17 @@ public class FlightServiceImpl implements FlightService {
 	//THis take the LocalDate's date to check, start date and end date, and then returns teh value of the code. This considers offsets for
 	//the following years
 	public boolean checkWithinHoliday (LocalDate dateToCheck) {
+		boolean holidayCheck = false;
 		int startDateYear = dateToCheck.getYear();
 		int endDateYear = startDateYear++;
 		LocalDate startDate = LocalDate.of(startDateYear, 12, 1);
 		LocalDate endDate = LocalDate.of(endDateYear, 1, 31);
-        return dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
-                || (dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate));
+        if (dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
+                || (dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate))) {
+        	holidayCheck = true;
+        }
+        
+        return holidayCheck;
     }
 		
 
