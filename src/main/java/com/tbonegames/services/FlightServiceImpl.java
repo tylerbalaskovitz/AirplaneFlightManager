@@ -97,8 +97,6 @@ public class FlightServiceImpl implements FlightService {
 		boolean holidayCheck = false;
 		int startDateYear = dateToCheck.getYear();
 		int endDateYear = (startDateYear+1);
-		System.out.println(startDateYear);
-		System.out.println(endDateYear);
 		LocalDate startDate = LocalDate.of(startDateYear, 12, 1);
 		LocalDate endDate = LocalDate.of(endDateYear, 1, 31);
         if (dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
@@ -112,8 +110,10 @@ public class FlightServiceImpl implements FlightService {
 			System.out.println("*****PRICE INCREASE*********");
 			System.out.println("****************************");
 			System.out.println("****************************");
+			System.out.println("****************************");
         	flight.setFare(flight.getFare()*1.2);
-        }
+        	System.out.println("*NEW PRICE: "+ flight.getFare() +"*********");
+        } 
         
         return holidayCheck;
     }

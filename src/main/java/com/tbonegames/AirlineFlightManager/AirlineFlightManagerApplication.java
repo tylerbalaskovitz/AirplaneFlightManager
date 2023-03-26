@@ -3,7 +3,6 @@ package com.tbonegames.AirlineFlightManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.tbonegames.flights.AppConfig;
 import com.tbonegames.repository.FlightRepositoryImpl;
