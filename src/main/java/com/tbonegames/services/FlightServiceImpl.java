@@ -28,7 +28,7 @@ public class FlightServiceImpl implements FlightService {
 	
 	
 	ArrayList <Flight> flightList = new ArrayList<>();
-	Flight flight = new Flight();
+	Flight flight;
 	
 	
 	@Override
@@ -65,12 +65,11 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount, int year, int month, int day) {
-
-		flight.setJourneyDate(LocalDate.of(year, month, day));
-		
-		LocalDate flightDate = flight.getJourneyDate();
 		
 		flight = new Flight();
+		
+		flight.setJourneyDate(LocalDate.of(year, month, day));
+		
 		
 		if (flightId != null) {
 			flight.setFlightId(flightId);
@@ -83,7 +82,7 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setDestination(destination);
 		
-		if (checkWithinHoliday(flightDate) == true) {
+		if (checkWithinHoliday(flight.getJourneyDate()) == true) {
 			System.out.println("****************************");
 			System.out.println("****************************");
 			System.out.println("*****HOLIDAY FLIGHT*********");
