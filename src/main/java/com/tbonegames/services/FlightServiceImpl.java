@@ -1,5 +1,7 @@
 package com.tbonegames.services;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,6 +84,17 @@ public class FlightServiceImpl implements FlightService {
 		flight.setSeatCount(seatCount);
 		
 		fri.store(flight);
+	}
+	
+	public boolean withinHoliday(String dateString) {
+		boolean inHoliday = false;
+		LocalDate date = LocalDate.parse(dateString);
+		//Period p = Period.between(LocalDate.of(2023, 12, 1), LocalDate.of(2024, 1, 31));
+		if ( date.withMonth(12) || date.withMonth(1) {
+			inHoliday = true;
+		}
+		
+		return inHoliday;
 	}
 
 	
