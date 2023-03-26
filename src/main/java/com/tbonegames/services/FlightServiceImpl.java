@@ -82,17 +82,9 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setDestination(destination);
 		
-		if (checkWithinHoliday(flight.getJourneyDate()) == true) {
-			System.out.println("****************************");
-			System.out.println("****************************");
-			System.out.println("*****HOLIDAY FLIGHT*********");
-			System.out.println("*****PRICE INCREASE*********");
-			System.out.println("****************************");
-			System.out.println("****************************");
-			flight.setFare(fare*1.2);
-		} else {
-			flight.setFare(fare);
-		}
+		flight.setFare(fare);
+		
+		checkWithinHoliday(flight.getJourneyDate());
 		
 		flight.setSeatCount(seatCount);
 		
@@ -104,12 +96,23 @@ public class FlightServiceImpl implements FlightService {
 	public boolean checkWithinHoliday (LocalDate dateToCheck) {
 		boolean holidayCheck = false;
 		int startDateYear = dateToCheck.getYear();
-		int endDateYear = startDateYear++;
+		int endDateYear = (startDateYear+1);
+		System.out.println(startDateYear);
+		System.out.println(endDateYear);
 		LocalDate startDate = LocalDate.of(startDateYear, 12, 1);
 		LocalDate endDate = LocalDate.of(endDateYear, 1, 31);
         if (dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
                 || (dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate))) {
         	holidayCheck = true;
+        }
+        if (holidayCheck == true) {
+			System.out.println("****************************");
+			System.out.println("****************************");
+			System.out.println("*****HOLIDAY FLIGHT*********");
+			System.out.println("*****PRICE INCREASE*********");
+			System.out.println("****************************");
+			System.out.println("****************************");
+        	flight.setFare(flight.getFare()*1.2);
         }
         
         return holidayCheck;
