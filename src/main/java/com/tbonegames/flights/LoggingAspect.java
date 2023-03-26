@@ -2,6 +2,8 @@ package com.tbonegames.flights;
 
 
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 	
+	private final Logger logFlightService = Logger.getLogger(LoggingAspect.class.getName());
 	
 	//THis is the pointcut, by specifying when the Aspect is applied. The Advice is the @Before's body.
 	@Before("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
@@ -31,6 +34,7 @@ public class LoggingAspect {
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("BEFORE. Flight created on " + ldt);
 		System.out.println(className + "." + methodName + "() returned. " + args.toString());
+		logFlightService.info(methodName + className);
 	}
 	
 	@After("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
@@ -41,6 +45,7 @@ public class LoggingAspect {
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("AFTER.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
+		logFlightService.info(methodName + className);
 	}
 	
 	@AfterReturning(pointcut = "execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
@@ -53,7 +58,9 @@ public class LoggingAspect {
 		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
 		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
+		logFlightService.severe(methodName);
 		System.out.println("==============================================");
+		
 	}
 	
 	@AfterThrowing(pointcut = "execution(* com.tbonegames.services.FlightServiceImpl.*(..))", throwing = "ex")
@@ -65,6 +72,7 @@ public class LoggingAspect {
 		System.out.println("*******************************************");
 		System.out.println("THROWING.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
+		logFlightService.warning(methodName);
 		System.out.println("*******************************************");
 	}
 	
@@ -73,7 +81,8 @@ public class LoggingAspect {
 		String className = proceedingJoinPoint.getTarget().getClass().getName();
 		String methodName = proceedingJoinPoint.getSignature().getName();
 		System.out.println("PROCEED BEFORE. The proceedingJoinPoint.proceed() is executed");
-	
+		logFlightService.severe("SEVERE in the around Advice in the PROCEED BEFORE part of code");
+		logFlightService.log(Level.INFO, "SEVERE in the around Advice in the PROCEED BEFORE part of code");
 		proceedingJoinPoint.proceed(); 
 		
 		LocalDateTime ldt = LocalDateTime.now();
