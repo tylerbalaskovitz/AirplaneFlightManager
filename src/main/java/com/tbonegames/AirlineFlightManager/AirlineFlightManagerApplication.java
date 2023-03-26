@@ -20,9 +20,9 @@ public class AirlineFlightManagerApplication{
 			SpringApplication.run(AirlineFlightManagerApplication.class, args);
 
 			FlightServiceImpl fsi = context.getBean(FlightServiceImpl.class);
-			fsi.addFlight("1004", "American Airlines", "Chicago", "Miami", 125.00, 3);
-			fsi.addFlight("2072", "United Airlines", "Atlanta", "Los Angeles", 255.00, 8);
-			fsi.addFlight(null, "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1);
+			fsi.addFlight("1004", "American Airlines", "Chicago", "Miami", 125.00, 3, 2024, 3, 12);
+			fsi.addFlight("2072", "United Airlines", "Atlanta", "Los Angeles", 255.00, 8, 2064, 12, 31);
+			fsi.addFlight(null, "All Nippon Airways", "Tokyo", "Chicago", 1400.00, 1, 2030, 1, 12);
 			
 			FlightRepositoryImpl fri = context.getBean(FlightRepositoryImpl.class);
 			System.out.println(" ");

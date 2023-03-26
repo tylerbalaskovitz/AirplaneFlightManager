@@ -64,8 +64,12 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount) {
+	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount, int year, int month, int day) {
 
+		flight.setJourneyDate(LocalDate.of(year, month, day));
+		
+		LocalDate flightDate = flight.getJourneyDate();
+		
 		flight = new Flight();
 		
 		if (flightId != null) {
@@ -79,23 +83,34 @@ public class FlightServiceImpl implements FlightService {
 		
 		flight.setDestination(destination);
 		
-		flight.setFare(fare);
+		if (checkWithinHoliday(flightDate) == false) {
+			flight.setFare(fare);
+		} else {
+			System.out.println("****************************");
+			System.out.println("****************************");
+			System.out.println("*****HOLIDAY FLIGHT*********");
+			System.out.println("*****PRICE INCREASE*********");
+			System.out.println("****************************");
+			System.out.println("****************************");
+			flight.setFare(fare*1.2);
+		}
 		
 		flight.setSeatCount(seatCount);
 		
 		fri.store(flight);
 	}
 	
-	public boolean withinHoliday(String dateString) {
-		boolean inHoliday = false;
-		LocalDate date = LocalDate.parse(dateString);
-		//Period p = Period.between(LocalDate.of(2023, 12, 1), LocalDate.of(2024, 1, 31));
-		if ( date.withMonth(12) || date.withMonth(1) {
-			inHoliday = true;
-		}
+	//THis take the LocalDate's date to check, start date and end date, and then returns teh value of the code. This considers offsets for
+	//the following years
+	public boolean checkWithinHoliday (LocalDate dateToCheck) {
+		int startDateYear = dateToCheck.getYear();
+		int endDateYear = startDateYear++;
+		LocalDate startDate = LocalDate.of(startDateYear, 12, 1);
+		LocalDate endDate = LocalDate.of(endDateYear, 1, 31);
+        return dateToCheck.isEqual(startDate) || dateToCheck.isEqual(endDate)
+                || (dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate));
+    }
 		
-		return inHoliday;
-	}
 
 	
 }
