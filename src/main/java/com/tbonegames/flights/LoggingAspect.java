@@ -34,7 +34,7 @@ public class LoggingAspect {
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("BEFORE. Flight created on " + ldt);
 		System.out.println(className + "." + methodName + "() returned. " + args.toString());
-		logFlightService.info(methodName + className);
+		logFlightService.info(methodName + className + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 	
 	@After("execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
@@ -45,7 +45,7 @@ public class LoggingAspect {
 		LocalDateTime ldt = LocalDateTime.now();
 		System.out.println("AFTER.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
-		logFlightService.info(methodName + className);
+		logFlightService.info(methodName + className + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 	
 	@AfterReturning(pointcut = "execution(* com.tbonegames.services.FlightServiceImpl.*(..))")
@@ -58,7 +58,7 @@ public class LoggingAspect {
 		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
 		System.out.println("AFTER RETURNING.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
-		logFlightService.severe(methodName);
+		logFlightService.severe(methodName + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		System.out.println("==============================================");
 		
 	}
@@ -72,7 +72,7 @@ public class LoggingAspect {
 		System.out.println("*******************************************");
 		System.out.println("THROWING.  the method was executed at" + ldt);
 		System.out.println(className + "." + methodName + "() returned.");
-		logFlightService.warning(methodName);
+		logFlightService.warning(methodName + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		System.out.println("*******************************************");
 	}
 	
@@ -82,7 +82,7 @@ public class LoggingAspect {
 		String methodName = proceedingJoinPoint.getSignature().getName();
 		System.out.println("PROCEED BEFORE. The proceedingJoinPoint.proceed() is executed");
 		logFlightService.severe("SEVERE in the around Advice in the PROCEED BEFORE part of code");
-		logFlightService.log(Level.INFO, "SEVERE in the around Advice in the PROCEED BEFORE part of code");
+		logFlightService.log(Level.INFO, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXSEVERE in the around Advice in the PROCEED BEFORE part of codeXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		proceedingJoinPoint.proceed(); 
 		
 		LocalDateTime ldt = LocalDateTime.now();

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.tbonegames.repository.FlightRepositoryImpl;
 @Qualifier("flightService")
 @Service
 public class FlightServiceImpl implements FlightService {
+	
+	Logger logger = LoggerFactory.getLogger(FlightServiceImpl.class);
 
 	//autowiring the reference of the FlightRepositoryImpl
 
@@ -65,6 +69,8 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void addFlight(String flightId, String airlines, String source, String destination, Double fare, Integer seatCount, int year, int month, int day) {
+		
+		logger.error("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXFATAL ERRORSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		
 		flight = new Flight();
 		
